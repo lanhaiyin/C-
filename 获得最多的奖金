@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+	cin>>n;
+   int arr[n];
+    
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+ int left=0;int right=n-1;long long L=0,R=0,ans=0;
+    while(left<=right)
+    {
+        if(L<R)
+        {
+             L+=arr[left];
+            ++left;
+           
+        }
+        else if(L>R)
+        {
+              R+=arr[right];
+            --right;       
+        }
+        else
+        {
+             ans=R;
+            L+=arr[left];
+            R+=arr[right];
+            ++left;
+            --right;
+        }
+    }
+       if(L==R)
+            ans=R;
+           
+    cout<<ans;
+    return 0;
+}
