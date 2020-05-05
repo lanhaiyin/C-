@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int repeatedStringMatch(string A, string B) {
+        int count=1;
+        string ans=A;
+        
+while(1)
+{
+   string::size_type idx=ans.find(B);//在a中查找b.
+   if(count>B.size()/A.size()+2)
+   return -1;
+    if(idx==string::npos )//不存在。
+    {
+       ans+=A;//叠加
+       count++;
+    }
+    else//存在
+       break;
+      
+}
+return count;
+    }
+};
