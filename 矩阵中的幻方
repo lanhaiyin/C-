@@ -1,0 +1,41 @@
+class Solution {
+public:
+string ans1="8167294381672943";
+string ans2="3492761834927618";
+bool fun(vector<vector<int>>& grid,int m,int n)
+{
+if(grid[m+1][n+1]!=5)
+return false;
+string s="";
+s=to_string(grid[m][n])+to_string(grid[m][n+1])+to_string(grid[m][n+2])
+ +to_string(grid[m+1][n+2])+to_string(grid[m+2][n+2])
+ +to_string(grid[m+2][n+1])+to_string(grid[m+2][n])
+ +to_string(grid[m+1][n]);
+  string::size_type position1;
+  string::size_type position2;
+
+     position1 = ans1.find(s);
+       position2 = ans2.find(s);
+     
+     if (position1 == s.npos&&position2 == s.npos)  
+    {
+       return false;
+    }
+  
+ 
+ return true;
+}
+    int numMagicSquaresInside(vector<vector<int>>& grid) {
+int count=0;
+    for(int i=0;i+2<grid.size();i++)
+    {
+        for(int j=0;j+2<grid[i].size();j++)
+        {
+            //判断i-i+2,j-j+2的数组是不是矩阵幻方
+            if(fun(grid,i,j))
+                count++;
+        }
+    }
+    return count;
+    }
+};
