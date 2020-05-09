@@ -1,0 +1,33 @@
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    ListNode* EntryNodeOfLoop(ListNode* pHead)
+    {
+      ListNode *fast=pHead;
+        ListNode *slow=pHead;
+        while(slow&&fast->next!=NULL)
+        {
+            fast=fast->next->next;
+            slow=slow->next;
+            if(slow==fast)
+            {
+                ListNode *ans=pHead;
+                while(ans!=slow)
+                {
+                    ans=ans->next;
+                    slow=slow->next;
+                }
+                return ans;
+            }
+        }
+        return NULL;
+    }
+};
