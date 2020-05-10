@@ -1,0 +1,34 @@
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};*/
+
+class Balance {
+public:
+    //z左子树的深度与右子树的深度差
+    int depth(TreeNode* root)
+    {
+        if(root==NULL)
+            return 0;
+     int left=depth(root->right);
+      int right=depth(root->left);
+        return left>right? left+1:right+1;
+       
+    }
+    bool isBalance(TreeNode* root) {
+        // write code here
+        if(root==NULL)
+            return true;
+        int cha=depth(root->left)-depth(root->right);
+     if(cha>1||cha<-1)
+         return false;
+          
+      return isBalance(root->left)&& isBalance(root->right);
+        
+    }
+};
