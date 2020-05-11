@@ -1,0 +1,11 @@
+class Solution {
+public:
+ 
+    int Sum_Solution(int n) {
+        if(n==1)
+            return 1;
+       int ans=n;
+        ans+=Sum_Solution(n-1);
+        return ans;
+    }
+};
