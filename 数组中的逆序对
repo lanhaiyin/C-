@@ -1,0 +1,31 @@
+
+class Solution {
+public:
+    int cnt;
+    const int MOD = 1000000007;
+
+    int InversePairs(vector<int> data) {
+        vector<int> tmp(data.size());
+        cnt = 0;
+        merge_sort(data, 0, data.size(), tmp);
+        return cnt;
+    }
+
+    void merge_sort(vector<int>& data, int l, int r, vector<int>& tmp) {
+        if (r - l > 1) {
+            int m = l + (r - l) / 2, p = l, q = m, i = l;
+            merge_sort(data, l, m, tmp);
+            merge_sort(data, m, r, tmp);
+            while (p < m && q < r) {
+                if (data[p] <= data[q]) tmp[i++] = data[p++];
+                else {
+                    cnt = (cnt + (m - p) % MOD) % MOD;
+                    tmp[i++] = data[q++];
+                }
+            }
+            while (p < m) tmp[i++] = data[p++];
+            while (q < r) tmp[i++] = data[q++];
+            for (int j = l; j < r; j++) data[j] = tmp[j];
+        }
+    }
+};
