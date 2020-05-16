@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int Fibonacci(int n) {
+      if(n==0||n==1)
+        return n;
+   int i=2;int pre=0,last=1;int ans=0;
+        while(i<=n)
+        {
+            ans=pre+last;
+            pre=last;
+            last=ans;
+            i++;
+        }
+        return ans;
+    }
+};
