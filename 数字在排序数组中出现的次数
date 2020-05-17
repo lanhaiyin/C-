@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int GetNumberOfK(vector<int> data ,int k) {
+        vector<int>::iterator it = find(data.begin(),data.end(), k);
+  int count=0;
+    if (it != data.end())
+    {      
+            while(it!=data.end()&&*it==k)
+            {
+                ++count;
+                ++it;
+            }
+    }     
+    else
+       return 0;
+   return count;     
+    }
+};
