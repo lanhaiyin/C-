@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int rectCover(int number) {
+        //每个矩形的有两个可能，横着放，剩下的覆盖方法等于n-2的，
+        //竖着放，剩下的覆盖方法等于n-1的覆盖方法
+        //横着放=f(n-2)
+        //竖着放=f(n-1);
+        if(number<=0)
+            return 0;
+        if(number==1||number==2)
+            return number;
+   return  rectCover(number-1)+rectCover(number-2);
+        
+        
+    }
+};
