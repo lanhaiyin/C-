@@ -1,0 +1,44 @@
+class Solution {
+public:
+    ListNode* ReverseList(ListNode* pHead) {
+//开辟新的节点进行头插
+        if(pHead==NULL||pHead->next==NULL)
+            return pHead;
+        ListNode *node=(ListNode*)malloc(sizeof(ListNode));
+          node->val=pHead->val;
+          node->next=NULL;
+        ListNode*later=node;
+        pHead=pHead->next;
+         
+    while(pHead)
+    {
+        ListNode *node=(ListNode*)malloc(sizeof(ListNode));
+        node->val=pHead->val;
+        node->next=later;
+        later=node;
+        pHead=pHead->next;
+    }
+        return later;
+    }
+};
+class Solution {
+public:
+    ListNode* ReverseList(ListNode* pHead) {
+        if(pHead==NULL||pHead->next==NULL)
+            return pHead;
+        ListNode *node=NULL;
+       //三指针法，迭代着走
+        ListNode *cur=pHead;
+        ListNode*pre=node;
+        ListNode *las=pHead->next;        
+        while(las)
+        {
+            cur->next=pre;
+            pre=cur;
+            cur=las;         
+            las=las->next; 
+        }
+        cur->next=pre;
+        return cur;     
+    }
+};
