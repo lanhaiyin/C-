@@ -1,0 +1,11 @@
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+    sort(numbers.begin(),numbers.end());
+        int len=numbers.size()/2;
+      int ans=numbers[len/2];
+      return  count(numbers.begin(),numbers.end(),ans)>len? ans:0;
+       
+      
+    }
+};
