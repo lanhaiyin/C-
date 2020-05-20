@@ -1,0 +1,227 @@
+#include <assert.h>
+#include <iostream>
+#include <algorithm>
+#include <math.h>
+using namespace std;
+namespace lhy
+{
+	template<class T>
+	class vector
+	{
+	public:
+		typedef T* iterator;
+	 typedef const T* const_iterator;
+	 iterator begin()
+		{
+			return _start;
+		}
+		iterator end()
+		{
+			return _finish;
+		}
+		const_iterator cbegin()
+		{
+			return _start;
+		}
+		const_iterator cend()
+		{
+			return _finish;
+		}
+		size_t size()
+		{
+			return _finish-_start;
+		}
+		size_t capacity()
+		{
+			return _endofstroge-_start;
+		}
+	   //无参构造
+		vector()
+			:_start(nullptr)
+			,_finish(nullptr)
+			,_endofstroge(nullptr)
+		{}
+		vector(int n,const T& val=T())
+			:_start(nullptr)
+			,_finish(nullptr)
+			,_endofstroge(nullptr)
+		{
+			reserve(n);
+			iterator end=_start;
+			while(end!=_endofstroge)
+			{
+				push_back(val);
+				++end;
+			}
+		}
+		vector(vector<T>&v)//拷贝构造
+		:_start(nullptr)
+			,_finish(nullptr)
+			,_endofstroge(nullptr)
+		{
+			reserve(v.capacity());
+			iterator it=_start;
+			const_iterator vit=v.cbegin();
+			while(vit!=v.end())
+			{
+				*it++=*vit++;
+			}
+			_finish=_start+v.size();
+			_endofstroge=_start+v.capacity();
+		}
+		~vector()
+		{
+			delete[] _start;
+			_start=_finish=_endofstroge=nullptr;
+		}
+		
+		T& operator[](size_t pos)
+		{
+			return _start[pos];
+		}
+		
+		void resize(int n,const T& val=T())//T()为默认构造 int的内置类型默认为0
+		{
+			//空间不够则扩容，并赋值缩小空间则改变_finish
+			if(n<size())
+			{
+				_finish=_start+n;
+				return;
+			}
+				
+				if(n>capacity())
+				{
+					reserve(n);
+				}
+				iterator end=_finish;
+				while(end!=_start+n)
+				{
+					*end=val;
+					++end;
+				}
+				//重置一下_finish
+				_finish=_start+n;
+		}
+		
+				
+		
+		void reserve(size_t n)
+		{
+			//如果n>capacity则需要增容，创建一个新的大小为n的空间，将原有的数据拷贝到新空间，
+			//然后将_start,_finish，_endofstroge重置
+			if(n>capacity())
+			{
+
+				T* tmp=new T[n];
+				if(_start)
+					if(_start)
+				memcpy(tmp,_start,sizeof(T)*size());
+				
+				_finish=tmp+size();
+				_start=tmp;
+				_endofstroge=_start+n;
+			}
+		}
+		iterator insert(iterator pos,const T& val)
+		{
+			assert(pos<=_finish);
+			//空间不够则扩容,扩容需要重置一下pos，在pos位置插入需要将pos之后的向后移动
+			if(_finish==_endofstroge)
+			{
+				size_t n=pos-_start;
+				size_t newcapacity=((capacity()==0)? 2:capacity()*2);
+				reserve(newcapacity);
+				pos=_start+n;
+			}
+			iterator end=_finish-1;
+			while(end>=pos)
+			{
+				*(end+1)=*end;
+				--end;
+			}
+		
+			*pos=val;
+			++_finish;
+		return pos;
+		}
+		iterator erase(iterator  pos)
+		{
+			assert(pos<_finish);
+			iterator end=pos+1;
+			while(end!=_finish)
+			{
+				*(end-1)=*(end);
+				++end;
+			}
+			
+			--_finish;
+			return pos;
+
+		}
+		void push_back(const T&val)
+		{
+			insert(_finish,val);
+		}
+		void pop_back()
+		{
+			erase(--_finish);
+		}
+		void _swap(vector<T>& v)
+		{
+			swap(_start,v._start);
+			swap(_finish,v._finish);
+			swap(_endofstroge,v._endofstroge);
+		}
+		void print(vector<T> &v)//这个是方便测试打印用的
+		{
+			vector<T>:: iterator it=v.begin();
+	      for(auto e: v)
+		  {
+			  cout<<e;
+
+		  }
+	    cout<<endl;
+		}
+	private:
+		iterator _start;
+		iterator _finish;
+		iterator _endofstroge;
+	};
+}
+
+void test1()
+{
+	lhy::vector<int>s1;
+	lhy::vector<int>s2(3,4);
+	lhy::vector<int>s3(s1);
+	s1.push_back(1);
+	s1.push_back(2);
+	s1.push_back(3);
+	s1.push_back(4);
+	s1.insert(s1.begin()+0,5);
+	s1.resize(20);
+	s1.reserve(30);
+	cout<<s1.capacity()<<endl;
+	s1.erase(s1.begin()+1);
+	s1._swap(s2);
+lhy::vector<int>:: iterator it=s1.begin();
+	while(it!=s1.end())
+	{
+		std::cout<<*it;
+		++it;
+	}
+	cout<<endl;
+   s2.print(s2);
+}
+void test2()
+{
+	lhy::vector<int>s1(5,2);
+  lhy::vector<int>:: const_iterator it=s1.cbegin();
+	while(it!=s1.cend())
+	{
+		std::cout<<*it;
+		++it;
+	}
+	
+	cout<<endl;
+}
