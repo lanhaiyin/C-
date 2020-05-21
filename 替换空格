@@ -1,0 +1,35 @@
+class Solution {
+public:
+    void replaceSpace(char *str,int length)
+    {
+        int bankNumber= 0;      
+        int i= 0;
+         
+        for(; str[i]!= '\0'; ++i)
+        {
+            if(str[i] == ' ')
+            {
+                ++bankNumber;
+            }
+        }
+         
+        int totalNumber= i+1 + bankNumber*2;
+         
+        int pos= totalNumber-1;
+         
+        for( ; i>= 0; --i)
+        {
+             if(str[i]== ' ')
+             {
+                str[pos--]= '0';
+                str[pos--]= '2';
+                str[pos--]= '%';
+             }
+             else
+             {
+                 str[pos--]= str[i];
+             }
+        }
+        
+    }
+};
