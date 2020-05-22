@@ -1,0 +1,24 @@
+
+
+class Solution {
+public:
+    int GetUglyNumber_Solution(int index) {
+        int uglynumber = 1;//丑数的本质是 2^k*3^j*5^i，
+        int l = 0;
+        long long a[100000] = {0};
+       
+        double log5 = log(5)/log(2);
+        double log3 = log(3)/log(2);
+        for(int i=0;i<31;i++){
+            for(int j=0;j<31;j++)
+                for(int k=0;k<31;k++){
+                    if(i*log5+j*log3+k<31){
+                        a[l++] = pow(2,k)*pow(3,j)*pow(5,i);
+                    }
+                }
+        }
+        sort(a,a+l);
+        uglynumber = a[index-1];
+        return uglynumber;
+    }
+};
