@@ -1,0 +1,27 @@
+class Solution {
+public:
+    /**
+     * 
+     * @param number string字符串 
+     * @return string字符串
+     */
+    string change(string number) {
+        // write code here
+       int pre=0;
+        int last=number.size()-1;
+        while(pre<last)
+        {
+            while(pre<last&&(number[pre]-'0')%2!=0)
+            {
+                ++pre;
+            }
+            while(pre<last&&(number[last]-'0')%2!=0)
+            {
+                --last;
+            }
+            swap(number[pre],number[last]);
+            ++pre;--last;
+        }
+        return number;
+    }
+};
