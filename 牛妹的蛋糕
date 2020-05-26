@@ -1,0 +1,26 @@
+class Solution {
+public:
+    /**
+     * 
+     * @param n int整型 只剩下一只蛋糕的时候是在第n天发生的．
+     * @return int整型
+     */
+    int x;
+    int cakeNumber(int n) {
+    
+        // write code here
+        //f(1)=x/3+1;
+        //f(2)=(x-f(1))/3+1;
+        // f(n)=1;
+        //x=(f(n)-1)*3+f(n-1)
+        //f(1)=3f(2)/2;
+        int temp=1;
+        for(int i=n-1;i>=1;i--)
+        {
+             temp++;
+            temp=3*temp/2;
+           
+        }
+        return temp;
+    }
+};
