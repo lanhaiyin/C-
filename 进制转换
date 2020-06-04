@@ -1,0 +1,30 @@
+#include<iostream>
+#include<vector>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    int M,N;
+    cin>>M>>N;
+    vector<int>arr;
+   if(M<0)cout<<'-';
+    while(M)
+    {
+        arr.push_back(abs(M%N));
+        M/=N;
+    }
+    reverse(arr.begin(),arr.end());
+   
+   
+    for(int i=0;i<arr.size();i++)
+    {
+        if(arr[i]>=10)
+        {
+            cout<<char('A'+arr[i]-10);
+        }
+        else
+        cout<<arr[i];
+    }
+    return 0;
+}
