@@ -1,0 +1,48 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    
+    vector<int> arr(n);
+  cin>>arr[0];
+    vector<int>add(n);
+    
+    add[0]=arr[0];int temp=arr[0];
+    for(int i=1;i<n;i++)
+    {
+        cin>>arr[i];
+       add[i]=arr[i]+temp;
+        temp=add[i];
+    }
+  
+  int max=arr[0];int flag=0;
+    //从第0位开始找连续和最大的
+    for(int i=0;i<n;i++)
+    {
+        int temp=max;
+       
+        for(int j=i+1;j<n;j++)
+        {
+             if(add[j-1]<add[j])
+          {
+                 flag=j;
+                 max=add[j]-add[j-2];
+          }else if(add[j]>add[flag])
+                 {
+                     //从flag到j的数组相加
+                     max=add[j]+add[flag];
+                 }
+          }
+        if(temp>=max)
+        {
+            max=temp;
+        }
+            
+     }
+       
+    cout<<max;
+    return 0;
+}
