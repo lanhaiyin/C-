@@ -1,0 +1,26 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+int main()
+{
+    int x;
+    cin>>x;
+    int fm1=0;int fm2=1;int fm3=0;
+   
+    while(1&&x>=2)
+    {
+         fm3=fm1+fm2;
+        if(x<=fm3)
+        {
+           cout<<min(fm3-x,x-fm2);
+           break;
+        }
+       
+        fm1=fm2;
+        fm2=fm3;
+        
+    }
+   if(x<2)
+       cout<<0;
+    return 0;
+}
