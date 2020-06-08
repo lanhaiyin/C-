@@ -1,0 +1,17 @@
+#include<iostream>
+using namespace std;
+int gcc(int a,int b)
+{
+    if(a==0)
+        return b;
+    return gcc(b%a,a);
+}
+int main()
+{
+    int a,b;
+    cin>>a>>b;
+    //求出最大公倍数
+    cout<<a*b/gcc(a,b);
+    return 0;
+    
+}
