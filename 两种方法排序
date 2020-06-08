@@ -1,0 +1,64 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<string>
+using namespace std;
+void paixu1(vector<string>& length)
+{
+    int i=0;
+    while(i<length.size()-1)
+    {
+        if(length[i].size()>length[i+1].size())
+            swap(length[i],length[i+1]);
+        ++i;
+    }
+}
+int cmp(string a,string b)
+{
+    return a.compare(b)<0;
+}
+
+int main()
+{
+    int n;
+        cin>>n;
+    string str;
+    vector<string> arr;
+   string zds[100];
+   vector<string> length;
+   int i=0;
+    while(i<n)
+    {
+        cin>>str;
+        arr.push_back(str);
+		zds[i]=str;
+		i++;
+    }
+	length=arr;
+        paixu1(length);
+    sort(zds, zds+n,cmp);
+	int a=1,b=1;
+   for(int i=0;i<n;i++)
+   {
+	   if(length[i]!=arr[i])
+	   {
+		   a=0;
+		  
+	   }
+	    if(zds[i]!=arr[i])
+	   {
+		   b=0;
+		  
+	   }
+
+   }
+    if(a==1&&b==1)
+		cout<<"both"<<endl;
+	else if(a==1&&b==0)
+		cout<<"lengths"<<endl;
+	else if(a==0&&b==1)
+		cout<<"lexicographically";
+	else
+		cout<<"none";
+    return 0;
+}
