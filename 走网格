@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+ int m,n,count;
+void dfs(int i,int j)
+{
+    if(i==m&&j==n)
+    {
+        ++count;
+        return;
+    }
+    if(i<m+1&&j<n+1)
+    {
+        dfs(i+1,j);
+        dfs(i,j+1);
+    }
+}
+int main()
+{
+  while(cin>>m>>n)
+  {
+
+  dfs(0,0);
+    cout<<count<<endl;
+      count=0;
+  }
+   
+}
