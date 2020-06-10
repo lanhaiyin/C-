@@ -1,0 +1,32 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
+int main()
+{
+    string A;
+    string B;
+    cin>>A;
+    cin>>B;
+    int n=A.size();
+    int count=0;
+  int m=B.size();
+        for(int i=0;i<=n;i++)
+    {
+        
+        A.insert(i,B);
+        string C;
+        C=A;
+       
+        reverse(C.begin(),C.end());
+     
+        if(A.compare(C)==0)
+        {
+            //是回文
+            ++count;
+        }
+        A.erase(i,m);       
+    }  
+    cout<<count;
+    return 0;
+}
