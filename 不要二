@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int W,H;
+    cin>>W>>H;
+    int count=0;
+   if(W%4==0)
+   {
+      count= (W/4)*((H/2)*4+(H%2)*2);
+   }
+   else if(W%4==1)
+   {
+       count=((W/4)*((H/2)*4+(H%2)*2))+(H/4)*2+((H%4)>2?2:H%4);
+   }
+    else if(W%4==2)
+    {
+         count=((W/4)*((H/2)*4+(H%2)*2))+(H/4)*4+((H%4)>2?4:(H%4)*2);
+    }
+      else if(W%4==3)
+        {
+              count=((W/4)*((H/2)*4+(H%2)*2))+(H/4)*6+((H%4)>2?5:(H%4)*2);
+        }
+    cout<<count<<endl;
+    return 0;
+}
