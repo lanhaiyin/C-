@@ -1,0 +1,29 @@
+class Gloves {
+public:
+    int findMinimum(int n, vector<int> left, vector<int> right) {
+        // write code here
+        int count=0;
+        //如果有一个为0，需要都加上
+        //左边找一个，右边找除了最小（不是0）的
+        int r_min=26,l_min=26;int radd=0,ladd=0;
+      for(int i=0;i<n;i++)
+      {
+          if(left[i]*right[i]==0)
+          {
+              count+=left[i]+right[i];
+          }
+          else
+          {
+              radd+=right[i];
+              ladd+=left[i];
+              if(r_min>right[i])
+                  r_min=right[i];
+              if(l_min=left[i])
+                  l_min=left[i];
+          }
+      }
+        count+=1+min(ladd-l_min+1,radd-r_min+1);
+        return count;
+      
+    }
+};
