@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+   string a,b;
+   while( cin>>a>>b)
+   {
+    //使得a与b一样长，不够填充0
+   while(a.size()>b.size())
+       b="0"+b;
+    while(a.size()<b.size())
+    {
+        a="0"+a;
+    }
+    int yushu=0,temp=0;
+      for(int i=a.size()-1;i>=0;i--)
+      {
+          temp=a[i]-'0'+b[i]-'0'+yushu;
+          a[i]=temp%10+'0';
+          if(temp/10)
+          yushu=1;
+          else
+              yushu=0;
+      }
+    if(yushu)
+     a="1"+a;
+    cout<<a<<endl;
+   }
+}
