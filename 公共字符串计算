@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    string a,b;
+    int max=0;
+  while( cin>>a>>b)
+  {
+    for(int i=a.size();i>1;i--)
+    {
+        for(int j=0;j<a.size();j++)
+        {
+            if(i+j<=a.size())
+            {
+                
+            
+            string ans=a.substr(j,i);
+                int temp=b.find(ans);
+            if (temp!=-1&&max<ans.size())
+                  max=ans.size();
+            }
+        }
+    }
+    cout<<max<<endl;
+  }
+    return 0;
+}
