@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+   
+    string str;
+    while(cin>>str)
+    {
+        int flag=0;
+         int arr[30]={0};//0~25小写
+        for(int i=0;i<str.size();i++)
+        {
+           
+                arr[str[i]-'a']++;
+           
+        }
+        for(int i=0;i<str.size();i++)
+        {
+            
+               if(arr[str[i]-'a']==1)
+               {
+                    cout<<str[i]<<endl;
+                   flag=1;
+                   break;
+               }
+            
+        }
+        if(flag==0)
+            cout<<-1<<endl;
+    }
+    return 0;
+}
