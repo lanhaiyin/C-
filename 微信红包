@@ -1,0 +1,22 @@
+class Gift {
+public:
+    int getValue(vector<int> gifts, int n) {
+        // write code here
+        sort(gifts.begin(),gifts.end());
+       for(int i=0;i<n;i++)
+       {
+           int size=1;
+           while(i<n-1&&gifts[i+1]==gifts[i])
+           {
+               size++;
+               ++i;
+           }
+           if(size>n/2)
+           {
+              return gifts[i-1];
+               break;
+           }
+           
+       }
+        return 0;
+    }
