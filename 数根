@@ -1,0 +1,27 @@
+// write your code here cpp,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+#include <iostream>
+using namespace std;
+int fun(int n)
+{
+    int k=0;
+     int sum=0;
+      while (n!=0)
+      {
+           k=n%10;
+           sum+=k;
+           n/=10;
+         }
+ 
+      if(sum>=10)    //递归调用
+          sum=fun(sum);
+     return sum;
+}
+int main()
+{
+   int n;
+    while(cin>>n)
+    {
+       cout<<fun(n)<<endl;
+    }
+    return 0;
+}
