@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string>
+using namespace std;
+//字符串相加
+string ans1(string a,string b)
+{
+    int i=a.size()-1,j=b.size()-1;
+    string ans;
+    while(i>=0&&j>=0)
+    {
+        ans+=((a[i]-'0')+(b[j]-'0')+'0');
+         --i;
+        --j;
+    }
+    string temp;
+    if(i>=0)
+    {
+         temp=a.substr(0,i+1);
+    }if(j>=0)
+    {
+        temp=b.substr(0,j+1);
+    }
+    ans=temp+ans;
+    return ans;
+}
+//字符串比较
+bool ans2(string a,string b)
+{
+    if(a.size()>b.size())
+        return true;
+    else if(a.size()<b.size())
+        return false;
+    else{
+        int i=0;
+        while(i<a.size())
+        {
+            if(a[i]>b[i])
+                return true;
+            else if(a[i]<b[i])
+                return false;
+            ++i;
+        }
+        return false;
+    }
+}
+
+int main()
+{
+   string a,b,c;
+    while(cin>>a>>b>>c)
+    {
+        if(ans2(ans1(a,b),c)&&(ans2(ans1(a,c),b))&&ans2(ans1(b,c),a))
+           cout<<"Yes"<<endl;
+        else
+            cout<<"No"<<endl;     
+        
+    }
+    return 0;
+}
