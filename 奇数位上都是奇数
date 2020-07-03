@@ -1,0 +1,58 @@
+class Solution {
+public:
+    /**
+     *  奇数位上都是奇数或者偶数位上都是偶数
+     *  输入：数组arr，长度大于2
+     *  len：arr的长度
+     *  将arr调整成奇数位上都是奇数或者偶数位上都是偶数
+     */
+    void oddInOddEvenInEven(vector<int>& arr, int len) {
+
+        //计算偶数的个数
+        int i=0;int count=0;
+        vector<int>oushu(len);int m=0;
+        vector<int>jishu(len);int n=0;
+          for(;i<len;i++)
+          {
+              if(arr[i]%2==0)
+              {
+                  ++count;
+                  oushu[m]=arr[i];
+                  ++m;
+              }else
+              {
+                  jishu[n]=arr[i];
+                  ++n;
+              }
+                 
+          }
+        m=0;n=0;
+        
+          if(count>=len/2)
+          {
+              for(int i=0;i<len;i++)
+              {
+                 if(i==0||i%2==0)
+                 {
+                     arr[i]=oushu[m];
+                     ++n;
+                 }
+                  else
+                  {
+                      if(n<jishu.size()-1)
+                      {
+                          arr[i]=jishu[n];
+                          n++;
+                      }
+                      else
+                      {
+                          arr[i]=oushu[m];
+                          m++;
+                      }
+                  }
+                      
+              }
+          }   
+     
+    }
+};
