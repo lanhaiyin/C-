@@ -1,0 +1,35 @@
+// write your code here cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    
+       
+    while(cin>>n)
+    {
+        cout<<n<<" =";
+        int flag=0;
+        for(int i=2;n>1;i++)
+        {
+            while(n>1&&n%i==0)
+            {
+                if(flag==0)
+                {
+                        cout<<" "<<i;
+                    flag=1;
+                }
+                
+                    else
+                    { cout<<" *"<<" "<<i;
+                   
+                        
+                    }
+               
+                n/=i;
+            }
+        }
+        cout<<endl;
+    }
+    return 0;
+}
