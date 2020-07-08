@@ -1,0 +1,35 @@
+// write your code here cpp
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    string s,ans;
+    while(cin>>s>>ans)
+    {
+        int count=0;
+        int i=0,n=s.size();
+       
+        while(i<n)
+        {
+             int j=0;int k=i;
+           if(s[i]==ans[j])
+           {
+               while(i<n&&s[i]==ans[j]&&j<ans.size())
+               {
+                   ++i;++j;
+               }
+               if(j==ans.size())
+               {
+                   ++count;
+                   i=k+ans.size(); 
+               }else i=k+1;
+               
+           }
+            else
+                ++i;
+        }
+        cout<<count<<endl;
+    }
+    return 0;
+}
