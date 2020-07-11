@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int x,y;
+    cin>>x>>y;
+    int r;
+    cin>>r;
+    int d;
+    cin>>d;
+    cout<<x*y<<endl;
+    cout<<r*r*3.14<<endl;
+    cout<<d*d<<endl;
+    return 0;
+}
