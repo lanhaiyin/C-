@@ -1,0 +1,58 @@
+// write your code here cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    int m,n;
+    while(cin>>m>>n)
+    {
+        int count=m*n;
+		char(*arr)[20]=new char[m][20];
+        for(int i=0;i<m+2;i++)
+        {
+            for(int j=0;j<n+2;j++)
+            {
+                if(i==0||j==0||i==m+1||j==n+1)
+                {
+                   arr[i][j]='k';
+                }
+                else
+					cin>>arr[i][j];
+            }
+        }
+         for(int i=1;i<m+1;i++)
+        {
+            for(int j=1;j<n+1;j++)
+            {
+               if(arr[i][j]=='#')
+               {
+                   --count;
+               }
+                if(arr[i][j]=='.')
+                {
+                    if(arr[i][j-1]=='#'&&arr[i+1][j]=='#'&&i==1&&j==n)
+                    {
+                        --count;
+                    }else if(arr[i][j+1]=='#'&&arr[i+1][j]=='#'&&i==1&&j==1)
+                    {
+                        --count;
+                    }
+                    else if(arr[i-1][j]=='#'&&arr[i][j+1]=='#'&&i==m&&j==1)
+                    {
+                        --count;
+                    }  else if(arr[i-1][j]=='#'&&arr[i][j-1]=='#'&&i==m&&j==n)
+                    {
+                        --count;
+                    } else if(arr[i-1][j]=='#'&&arr[i+1][j]=='#'&&arr[i][j-1]=='#'&&arr[i][j+1]=='#')
+                    {
+                        --count;
+                    }
+                }
+            }
+         }
+           cout<<count<<endl; 
+    }
+    return 0;
+}
+ 
