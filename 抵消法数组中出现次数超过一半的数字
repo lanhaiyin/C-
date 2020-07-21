@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers) {
+    //思路一：利用map对数组的数据进行统计然后找大于数组一半的
+     //思路二：将数组进行排序，如果有出现超过一半的则这个数在数组的中间位置，再验证数组里这个数出现的次数是否满足
+      //思路三：不同的数之间进行抵消（用出现次数多的抵消其他的数），剩下的那些数就是出现次数最多的，然后统计这个数出现的次数
+        int ans=numbers[0];int times=1;
+        for(int i=0;i<numbers.size();i++)
+        {
+            if(times==0)
+            {
+               ans= numbers[i];
+                times++;
+            }else if(ans==numbers[i])
+            {
+                ++times;
+            }else --times;
+        }
+        int count=0;
+        for(int i=0;i<numbers.size();i++)
+        {
+            if(numbers[i]==ans)
+            {
+                ++count;
+            }
+        }
+        if(count>numbers.size()/2)
+            return ans;
+        else return 0;
+    }
+};
