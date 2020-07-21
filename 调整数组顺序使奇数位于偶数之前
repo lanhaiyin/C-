@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void reOrderArray(vector<int> &array) {
+        //找到奇数，让奇数之前的数后移，再插入奇数
+        int k=0;//k表示奇数的下标
+        for(int i=0;i<array.size();i++)
+        {
+            if(array[i]%2==1)
+            {
+                //保存奇数
+                int temp=array[i];
+                int j=i;
+                //让j之前的偶数后移
+                while(j>k)
+                {
+                    array[j]=array[j-1];
+                    --j;
+                }
+                //插入之前保存的奇数
+                array[k]=temp;
+                ++k;
+            }
+        }
+        
+    }
+};
