@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int minNumberInRotateArray(vector<int> rotateArray) {
+        //旋转之后最小值大多数在中间，可以使用二分查找
+        //左边部分是非递减，右边部分也是非递减，缩小范围，最终找到最小的
+        //如果left<mid说明最小值在左边,让right=mid
+        //如果mid>right,说明最小值在右边让 left=mid
+        //当right-left=1时，输出，right对应的值就是最小值
+        int left=0,right=rotateArray.size()-1;int mid=0;
+        while(left<right)
+        {
+            if(right-left==1)
+            {
+                return  rotateArray[right];
+            }
+            mid=(left+right)/2;
+            if(rotateArray[left]==rotateArray[mid]&&rotateArray[mid]==rotateArray[right])
+            {
+                int min=rotateArray[0];
+                for(int i=left;i<right;i++)
+                {
+                    if(min>rotateArray[i])
+                    {
+                        min=rotateArray[i];
+                    }
+                }
+                return min;
+            }else if(rotateArray[left]>rotateArray[mid])
+            {
+                right=mid;
+            }else
+                left=mid;
+        }
+    }
+};
