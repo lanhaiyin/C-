@@ -1,0 +1,33 @@
+class Solution {
+public:
+	void replaceSpace(char *str,int length) {
+      int count=0;
+  
+        int n=length;
+        for(int i=0;i<length;i++)
+        {
+            if(str[i]==' ')
+            {
+                ++count;
+            }
+        }
+        char*old_end=str+length;
+        char * new_end=old_end+count*2;
+        while(old_end>=str)
+        {
+            if(*old_end==' ')
+            {
+                *new_end--='0';
+                *new_end--='2';
+                *new_end--='%';
+                old_end--;
+            }
+            else
+            {
+                *new_end--=*old_end--;
+            }
+        }
+        
+       
+	}
+};
