@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int jumpFloor(int number) {
+        //到第n层的总跳法等于n-1层的跳法+到n-2层的跳法
+        //f(n)=f(n-1)+f(n-2)
+        //斐波那契
+        int first=1;
+        int second=2;
+        int third=number;
+        while(number>2)
+        {
+            third=second+first;
+           
+            first=second;
+             second=third;
+            number--;
+        }
+     
+        return third;
+    }
+};
