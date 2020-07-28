@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+void fun(int n,int &m)
+{
+    if(n>0)
+    {
+       
+       m=m*10+(n%10);
+     
+     return fun(n/10,m);
+    }
+}
+        
+int main()
+{
+    int n;
+    while(cin>>n)
+    {
+        int flag=1;
+        if(n<0)
+        {
+            flag=-1;
+        }
+		int m=0;
+        n=abs(n);
+      
+        fun(n,m);
+        cout<<flag*m<<endl;
+    }
+    return 0;
+}
