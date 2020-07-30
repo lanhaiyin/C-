@@ -1,0 +1,32 @@
+class Solution {
+public:
+    /**
+     * 
+     * @param a int整型vector 原始数组a
+     * @param n int整型 第n大
+     * @param m int整型 第m大
+     * @return int整型vector
+     */
+    vector<int> sovle(vector<int>& a, int n, int m) {
+        // write code here
+        vector<int> b(a);
+          sort(b.begin(),b.end());
+         
+        m=b[a.size()-m];
+        n=b[a.size()-n];
+        int mi,ni;
+        for(int i=0;i<a.size();i++)
+        {
+            if(a[i]==m)
+            {
+                 mi=i;
+            }
+            if(a[i]==n)
+            {
+               ni=i;
+            }
+        }
+        swap(a[mi],a[ni]);
+        return a;
+    }
+};
