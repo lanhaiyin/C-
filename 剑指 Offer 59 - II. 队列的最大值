@@ -1,0 +1,52 @@
+class MaxQueue {
+public:
+//此题需要用到单调队列
+//单调队列的特征是两端都可操作，并且是单调的
+//插入一个元素时，从单调队列尾部比较，小的出队
+//删除时，如果删除的刚好是单调队列的头部元素，则两个都需要删除，如果不是，那么这个元素早已不在单调队列当中
+   int max=-1;
+        queue<int> p;
+        deque<int>d;
+    MaxQueue() {
+   
+    }
+    
+    int max_value() {
+    if(p.size()==0)
+     return -1;
+     return d.front();
+    }
+    
+    void push_back(int value) {
+        while(d.size()!=0&&d.back()<value)
+        {
+            d.pop_back();
+        }
+        d.push_back(value);
+        p.push(value);
+   
+    }
+    
+    int pop_front() {
+        if(p.size()<=0)
+        return -1;
+        int ans=p.front();
+        if(d.front()==ans)
+        {
+            d.pop_front();
+            p.pop();
+        }else
+        p.pop();
+   
+      return ans;
+    }
+
+};
+
+/**
+ * Your MaxQueue object will be instantiated and called as such:
+ * MaxQueue* obj = new MaxQueue();
+ * int param_1 = obj->max_value();
+ * obj->push_back(value);
+ * int param_3 = obj->pop_front();
+ */
