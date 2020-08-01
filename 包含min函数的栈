@@ -1,0 +1,40 @@
+class Solution {
+public:
+    //使用一个辅助栈
+    //当入栈的元素大于辅助栈的元素，插入辅助栈栈顶的元素，否则直接插入
+    //当出栈的时候，直接出栈
+    //最小值就是辅助栈栈顶的值
+    stack<int> s;
+    stack<int> fu;
+    void push(int value) {
+        if(fu.size()==0)
+        {
+            fu.push(value);
+            return ;
+        }
+            if(value>fu.top())
+            {
+                int top=fu.top();
+               fu.push(top);
+            }
+            else
+             fu.push(value);
+        s.push(value);
+        
+    }
+    void pop() {
+        if(s.size()!=0)
+        {
+            s.pop();
+            fu.pop();
+        }
+    }
+    int top() {
+        if(s.size()==0)
+            return -1;
+        return s.top();
+    }
+    int min() {
+        return fu.top();
+    }
+};
