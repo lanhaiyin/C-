@@ -1,0 +1,39 @@
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    vector<int> ans;
+  vector<  vector<int>>arr;
+    int i=0;int sum=0;
+ void  fun(TreeNode* root,int n)
+   {
+     if(sum>n||root==NULL)
+         return;
+          sum+=root->val;
+          ans.push_back(root->val); 
+      if(root->left==NULL&&root->right==NULL&&sum==n)
+      {
+          arr.push_back(ans);
+         // return;
+      }
+         
+          fun(root->left,n);
+          fun(root->right,n);
+          sum-=root->val;
+          ans.pop_back();
+    
+
+      
+   }
+    vector<vector<int> > FindPath(TreeNode* root,int expectNumber) {
+          fun(root, expectNumber);
+    return arr;
+    }
+};
