@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<string> ans;
+    void digui(string str,int k)
+    {
+        if(k==str.size())
+        {  int flag=0;
+            for(int j=0;j<ans.size();j++)
+            {
+                if(ans[j]==str)
+                {
+                    flag=1;
+                }
+            }
+           if(flag==0) ans.push_back(str);
+        }
+        
+        for(int i=k;i<str.size();i++)
+        {
+            swap(str[i],str[k]);
+            digui(str,k+1);
+            swap(str[i],str[k]);
+        }
+    }
+    
+    vector<string> Permutation(string str) {
+       if(str.size()>0)
+        digui(str,0);
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
