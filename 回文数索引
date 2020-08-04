@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+bool IsPalindrome(string s,int &start,int &end)
+{
+    bool result =true;
+    while(start<end)
+    {
+        if(s[start]!=s[end])
+        {
+           result=false;
+            break;
+        }
+        ++start;--end;
+    }
+    return result;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    //从两头找，如果不一样则一定有一个可以删除，删除其中一个如果是回文则就是对应的下标
+    while(n--)
+    {
+        string str;
+       cin>>str; 
+           int s_start=0;int s_end=str.size()-1;
+        if(IsPalindrome(str,s_start,s_end))
+        {
+             cout<<-1<<endl;
+         //代码走到这说明要么是回文，要么走到两边不一样的地方
+            //只需要再判断两边删除其中一个是否是回文
+            
+        }
+          if(s_end!=s_start)
+          {
+             int end=s_end;
+          str.erase(s_end,1); s_end-=1;
+          if(IsPalindrome(str,s_start,s_end))
+                  cout<<end<<endl;
+        else
+            cout<<s_start<<endl;
+       
+          }
+        
+        
+    }
+    
+}
