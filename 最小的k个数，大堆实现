@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
+          vector<int> ans;   
+        if(k<=0||input.size()==0||k>input.size())
+            return ans;
+       //建立大堆，每次将元素与堆顶的进行比较，小的话进行替换，然后重新调整堆，
+        //这样可以保证堆里的数据一直是之前的最小的k个
+        priority_queue<int> big_heap; 
+        for(int i=0;i<input.size();i++)
+        {
+            //堆里面不够10个数据
+            if(i<k)
+            {
+                big_heap.push(input[i]);
+            }
+            else
+            {
+                if(big_heap.top()>input[i])
+                {
+                    big_heap.pop();
+                    big_heap.push(input[i]);
+                }
+            }
+        }
+  
+     for(int i=0;i<k;i++)
+        {
+            ans.push_back(big_heap.top());
+            big_heap.pop();
+        }
+        return ans; 
+    }
+};
