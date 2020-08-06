@@ -1,0 +1,36 @@
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    int max=0;
+    void fun(TreeNode* pRoot,int count)
+    {
+         if(pRoot==NULL)
+        {
+            if(count>max)
+                max=count;
+            return ;
+        }
+     
+        fun(pRoot->left,count+1);
+      fun(pRoot->right,count+1);
+    
+    }
+    int TreeDepth(TreeNode* pRoot)
+    {
+         if(pRoot == nullptr){
+            return 0;
+        }
+       
+        fun(pRoot,0);
+        return max;
+        
+    }
+};
