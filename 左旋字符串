@@ -1,0 +1,14 @@
+class Solution {
+public:
+    string LeftRotateString(string str, int n) {
+        string s1="",s2="";
+        for(int i=0;i<str.size();i++)
+        {
+            if(i<n)
+                s1+=str[i];
+                else
+                    s2+=str[i];
+        }
+        return s2+s1;
+    }
+};
