@@ -1,0 +1,30 @@
+class Solution {
+public:
+    void FindNumsAppearOnce(vector<int> data,int* num1,int *num2) {
+     //先异或将相同的抵消
+        int result=0;
+        for(int i=0;i<data.size();i++)
+        {
+            result^=data[i];
+        }
+        //得到result是剩下两个树的异或，肯定有一个比特位不是相同的
+        int flag=1;
+        for(int i=0;i<32;i++)
+        {
+            if((flag<<i)&result)
+            {
+                flag=flag<<i;
+                break;
+            }
+        }
+        for(int i=0;i<data.size();i++)
+        {
+            if(data[i]&flag)          
+            {
+                *num1^=data[i];
+            }
+            else
+                *num2^=data[i];
+        }
+    }
+};
