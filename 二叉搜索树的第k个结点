@@ -1,0 +1,38 @@
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    queue<TreeNode*>que;
+    void fun(TreeNode* pRoot)
+    {
+        if(pRoot==NULL)
+            return;
+      
+        fun(pRoot->left);
+          que.push(pRoot);
+        fun(pRoot->right);
+    }
+    TreeNode* KthNode(TreeNode* pRoot, int k)
+    {
+        //中序遍历就是从小到大
+        fun(pRoot);
+      if(k>que.size()||k==0)
+          return NULL;
+       for(int i=0;i<k-1;i++)
+       {
+           que.pop();
+       }        
+      
+       return que.front();
+    }
+
+    
+};
