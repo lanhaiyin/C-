@@ -1,0 +1,46 @@
+/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/
+class Solution {
+public:
+    vector<vector<int> > Print(TreeNode* pRoot) {
+        queue<TreeNode*> que;
+        vector<int>arr;
+       vector<vector<int> >ans;
+        if(pRoot==NULL)
+            return ans;
+        que.push(pRoot);
+        int flag=1;
+        while(!que.empty())
+        {
+            flag++;
+          int n=que.size();
+            for(int i=0;i<n;i++)
+            {
+                TreeNode*p=que.front();
+               arr.push_back(p->val);
+                que.pop();
+                if(p->left)
+                que.push(p->left);
+                if(p->right)
+                que.push(p->right);              
+            }
+            if(flag%2!=0)
+            {
+                reverse(arr.begin(),arr.end());
+            }
+            
+            ans.push_back(arr);
+            arr.clear();
+        }
+            return ans;
+    }
+    
+};
