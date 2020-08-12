@@ -1,0 +1,35 @@
+class Solution {
+public:
+   
+    bool wordBreak(string s, unordered_set<string> &dict) {
+        //要想判断这个字符串能不能被分隔，就得先判断它前面的是否可以分割，在前面可以分割的基础上再试着判断后面的
+      if(dict.empty())
+          return false;
+         if(s.empty())
+          return false;
+        vector<bool> arr(s.size()+1,0);//用来存放第几位是可以分割的
+        arr[0]=true;
+        int max=0;
+        auto it=dict.begin();
+        for(;it!=dict.end();++it)
+        {
+            if((*it).size()>max)
+                max=(*it).size();
+        }
+        for(int i=1;i<=s.size();i++)
+        {
+            for(int j=i-1;j>=0;--j)
+            {
+                if((i-j)>max)
+                    break;
+                if(arr[j]&&dict.find(s.substr(j,i-j))!=dict.end())
+                {
+                    arr[i]=true;
+                    break;
+                }
+            }
+        }
+        return arr[s.size()];
+        
+    }
+};
