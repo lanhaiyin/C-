@@ -1,0 +1,30 @@
+class Solution {
+public:
+    /**
+     * 
+     * @param grid int整型vector<vector<>> 
+     * @return int整型
+     */
+    int minPathSum(vector<vector<int> >& grid) {
+        // write code here
+        int m=grid.size();
+        if(grid.empty())
+            return 0;
+        int n=grid[0].size();
+        vector<vector<int> >ans(grid);
+        for(int j=1;j<n;++j)
+        {
+            ans[0][j]+=ans[0][j-1];
+        }
+        for(int i=1;i<m;i++)
+        {
+            ans[i][0]+=ans[i-1][0];
+        }
+        for(int i=1;i<m;++i)
+            for(int j=1;j<n;++j)
+            {
+                ans[i][j]+=min(ans[i-1][j],ans[i][j-1]);
+            }
+        return ans[m-1][n-1];
+    }
+};
