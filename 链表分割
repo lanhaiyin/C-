@@ -1,0 +1,41 @@
+/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};*/
+class Partition {
+public:
+    ListNode* partition(ListNode* pHead, int x) {
+        // write code here
+      
+          ListNode *small= new ListNode(0);
+        ListNode *big=new ListNode(0);
+          ListNode *small_= small;
+        ListNode *big_=big;
+       
+        while(pHead)
+        {
+           if(pHead->val<x)
+           {
+                small_->next=pHead;
+               small_=small_->next;
+             
+               
+           }else{
+               big_->next=pHead;
+               
+               big_=big_->next;
+              
+           }
+            pHead=pHead->next;
+        }
+     big_->next=NULL;
+          
+      small_->next=big->next;
+     
+      
+        return small->next;
+      
+    }
+};
