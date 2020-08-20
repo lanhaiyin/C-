@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        //统计出现的次数
+        map<string,int> count;
+        for(auto e:words)
+        {
+            count[e]++;
+        }
+        multimap<int,string,greater<int>> sort;
+        for(auto e: count)
+        {
+            sort.insert(make_pair(e.second,e.first));
+        }
+        vector<string> ans;
+        for(auto it: sort)
+        {
+            ans.push_back(it.second);
+            if(--k==0)
+            break;
+        }
+        return ans;
+
+
+    }
+};
