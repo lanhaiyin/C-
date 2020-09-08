@@ -1,0 +1,92 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+vector<string> ans;
+void digui(string arr,int k)
+{
+ int i=0;
+    if(k==arr.size())
+    {
+		ans.push_back(arr);    
+    }
+
+    for(i=k;i<arr.size();i++)
+    {
+        swap(arr[i],arr[k]);//试探
+        digui(arr,k+1);
+        swap(arr[i],arr[k]);//回溯
+    }
+}
+int main()
+{
+    string a;
+   
+    string c;
+     cin>>a;
+	 cin.ignore();
+	  string b;
+    getline(cin,b);
+
+    cin>>c;
+	int i=0;
+	vector<string> arr;
+	string temp;
+
+	 while(i<b.size())
+        {
+            if(b[i]==' '||b[i]==',')
+              {
+				   arr.push_back(temp);
+				  if(b[i]==',')
+				  {
+					
+					 arr.push_back(",");
+					
+				  }
+				  else if(b[i]==' ')
+				  {
+					  
+					  arr.push_back(" ");
+				  }
+				 ++i;
+               			
+                 temp="";
+              }
+            temp+=b[i];
+			++i;
+        }
+	 arr.push_back(temp);
+	//将a进行排列组合
+	digui(a,0);
+	 for(int i=0;i<arr.size();++i)
+		cout<<arr[i];
+	 cout<<endl;
+	 for(int i=0;i<ans.size();++i)
+		cout<<ans[i]<<" ";
+	
+  
+
+	//进行替换
+	for(int i=0;i<arr.size();++i)
+	{
+	
+		if(arr[i].size()==a.size())
+		{
+			//将相同的进行替换
+			for(int j=0;j<ans.size();++j)
+			{
+				if(arr[i]==ans[j])
+				{
+					//删除从k到i的
+					arr[i]=c;
+				}
+			}
+		}
+	}
+	 for(int i=0;i<arr.size();++i)
+		cout<<arr[i];
+	
+  
+    return 0;
+}
