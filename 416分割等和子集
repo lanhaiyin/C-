@@ -1,0 +1,49 @@
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+       if(nums.size()<2)
+       return false;
+        int sum=0;
+  int max=nums[0];
+        for(int i=0;i<nums.size();++i)
+        {
+            if(max<nums[i])
+            {
+                max=nums[i];
+            }
+            sum+=nums[i];
+        }
+        if(sum%2!=0)
+        return false;
+        sum=sum/2;
+        if(sum<max)
+        return false;
+        int n=nums.size();
+        //如果可以分割则其中一个子集的容量为sum/2;
+        //接下来就是使用背包问题找是否有sum/2的组合
+       vector<vector<bool>> 
+        arr(n, vector<bool>(sum + 1, false));
+            for(int i=0;i<n;++i)
+            {
+                arr[i][0]=true;
+            }
+            arr[0][nums[0]]=true;
+         for(int i=1;i<n;++i)
+         {
+             for(int j=1;j<=sum;++j)
+             {
+                 //如果不能装下
+                 if(j<nums[i])
+                 {
+                    arr[i][j]=arr[i-1][j];
+                 }
+                 else
+                 {
+                     arr[i][j]=arr[i-1][j]|arr[i-1][j-nums[i]];
+                 }
+             }
+         }
+         return arr[n-1][sum];
+
+    }
+};
